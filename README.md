@@ -8,7 +8,11 @@ StruvIoT Application
 home page: 
 	(+) ui (70%), 
 	(+) connect to database, 
-	(-) connect to mqtt<br/>
+	(-) connect to AWS IoT Core<br/>
  detail page:
 	(+) ui (75%), 
-	(+) connect to mqtt
+	(+) connect to AWS IoT Core
+
+## Bugs (fix: +, not fix: -):
+(+) di home page, delete card berdasarkan id alat
+(+) tidak menambahkan id alat yang sama ke database - di halaman home page, saat user menekan tombol kembali akan menutup aplikasi
