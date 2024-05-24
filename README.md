@@ -8,7 +8,8 @@ StruvIoT Application
 
 ## Bugs (fix: +, not fix: -):
 (+) di home page, delete card berdasarkan id alat<br/>
-(+) tidak menambahkan id alat yang sama ke database - di halaman home page, saat user menekan tombol kembali akan menutup aplikasi
+(+) tidak menambahkan id alat yang sama ke database <br/>
+(-) di halaman home page, saat user menekan tombol kembali akan menutup aplikasi
 
 ## Progress (done: +, not done: -):
 (+) splash screen <br/>
