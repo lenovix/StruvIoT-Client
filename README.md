@@ -3,11 +3,11 @@
 StruvIoT Application
 
 ## Feature (added: +, not add: -):
-(+) get the data from aws iot core and display to device mobile
+(+) get the data from aws iot core and display to device mobile<br/>
 (-) writing or send the data from device mobile to aws iot core
 
 ## Bugs (fix: +, not fix: -):
-(+) di home page, delete card berdasarkan id alat
+(+) di home page, delete card berdasarkan id alat<br/>
 (+) tidak menambahkan id alat yang sama ke database - di halaman home page, saat user menekan tombol kembali akan menutup aplikasi
 
 ## Progress (done: +, not done: -):
