@@ -1,0 +1,17 @@
+,
+"//topic: struv/{id_alat}/reactor"
+{
+  "status": "on"
+}
+
+"// topic: struv/{id_alat}/penyaring"
+{
+  "status": "on",
+  "berat": 200
+}
+
+"// topic: struv/{id_alat}/pengering"
+{
+  "status": "on",
+  "suhu": 36
+}
