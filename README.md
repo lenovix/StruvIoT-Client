@@ -3,7 +3,7 @@
 StruvIoT Application
 
 ## Progress (done: +, not done: -):
-(+) splash screen
+(+) splash screen <br/>
 (+) scan qr page
 (-) > home page
 	(+) ui (70%)
