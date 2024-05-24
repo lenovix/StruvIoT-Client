@@ -9,6 +9,6 @@ StruvIoT Application
 	(+) ui (70%), 
 	(+) connect to database, 
 	(-) connect to mqtt<br/>
-(-) > detail page<br/>
-	(+) ui (75%)
+> detail page:
+	(+) ui (75%), 
 	(+) connect to mqtt
