@@ -1,4 +1,4 @@
-# StruvIoT
+# StruvIoT (v0.0.2)
 
 StruvIoT Application
 
