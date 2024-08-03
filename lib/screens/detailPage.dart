@@ -65,6 +65,20 @@ class _DetailPageState extends State<DetailPage> {
     _awsIotService.subscribe('$baseTopic/pengering');
   }
 
+  void _handleSwitchChange(String endpoint, bool value) {
+    setState(() {
+      if (endpoint == 'reaktor') {
+        _reaktorStatus = value;
+      } else if (endpoint == 'penyaring') {
+        _penyaringStatus = value;
+      } else if (endpoint == 'pengering') {
+        _pengeringStatus = value;
+      }
+    });
+
+    _awsIotService.sendDataToRestApi(endpoint, widget.deviceId, value ? 'on' : 'off');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,17 +107,17 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
           const SizedBox(height: 20.0),
-          _buildDeviceCard('Reaktor', _reaktorStatus, 'Status', _reaktorStatus ? 'On' : 'Off'),
+          _buildDeviceCard('Reaktor', _reaktorStatus, 'Status', _reaktorStatus ? 'On' : 'Off', 'reaktor'),
           const SizedBox(height: 10.0),
-          _buildDeviceCard('Penyaring', _penyaringStatus, 'Berat', _penyaringStatus ? _receivedBerat : '-'),
+          _buildDeviceCard('Penyaring', _penyaringStatus, 'Berat', _penyaringStatus ? _receivedBerat : '-', 'penyaring'),
           const SizedBox(height: 10.0),
-          _buildDeviceCard('Pengering', _pengeringStatus, 'Suhu', _pengeringStatus ? _receivedSuhu : '-'),
+          _buildDeviceCard('Pengering', _pengeringStatus, 'Suhu', _pengeringStatus ? _receivedSuhu : '-', 'pengering'),
         ],
       ),
     );
   }
 
-  Widget _buildDeviceCard(String title, bool status, String infoLabel, String infoValue) {
+  Widget _buildDeviceCard(String title, bool status, String infoLabel, String infoValue, String endpoint) {
     return Card(
       elevation: 4.0,
       child: ListTile(
@@ -119,7 +133,7 @@ class _DetailPageState extends State<DetailPage> {
         trailing: Switch(
           value: status,
           onChanged: (bool value) {
-            // logic for switch
+            _handleSwitchChange(endpoint, value);
           },
         ),
       ),

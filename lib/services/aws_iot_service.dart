@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:uuid/uuid.dart';
+import 'package:http/http.dart' as http;
 
 class AwsIotService {
   final String broker = 'a2myxdlmwu3fx-ats.iot.ap-southeast-1.amazonaws.com';
@@ -26,8 +27,8 @@ class AwsIotService {
     client!.logging(on: true);
 
     final rootCa = await rootBundle.loadString('assets/certs/AmazonRootCA1.pem');
-    final deviceCert = await rootBundle.loadString('assets/certs/e914c111ce3626a6a54cd60d77e9752309d09f766491e890d96a4e3abaf5f2ba-certificate.pem.crt');
-    final privateKey = await rootBundle.loadString('assets/certs/e914c111ce3626a6a54cd60d77e9752309d09f766491e890d96a4e3abaf5f2ba-private.pem.key');
+    final deviceCert = await rootBundle.loadString('assets/certs/5ad413cbd19e293fab7e5ab5e057be06bfde0634e414171a821e985915a7164a-certificate.pem.crt');
+    final privateKey = await rootBundle.loadString('assets/certs/5ad413cbd19e293fab7e5ab5e057be06bfde0634e414171a821e985915a7164a-private.pem.key');
 
     client!.securityContext.setTrustedCertificatesBytes(rootCa.codeUnits);
     client!.securityContext.useCertificateChainBytes(deviceCert.codeUnits);
@@ -88,4 +89,22 @@ class AwsIotService {
   }
 
   Stream<List<MqttReceivedMessage<MqttMessage>>>? get updates => client?.updates;
+
+  Future<void> sendDataToRestApi(String endpoint, String deviceId, String status) async {
+    final url = Uri.parse('http://192.168.1.8:8080/$endpoint');
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'id-alat': deviceId,
+        'status': status,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('Data sent successfully');
+    } else {
+      print('Failed to send data: ${response.statusCode}');
+    }
+  }
 }
