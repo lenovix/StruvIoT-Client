@@ -19,7 +19,6 @@ class _DetailPageState extends State<DetailPage> {
 
   String _receivedBerat = '-';
   String _receivedSuhu = '-';
-  bool _isConnected = false;
   bool _reaktorStatus = false;
   bool _penyaringStatus = false;
   bool _pengeringStatus = false;
@@ -28,9 +27,6 @@ class _DetailPageState extends State<DetailPage> {
   void initState() {
     super.initState();
     _awsIotService.connect().then((_) {
-      setState(() {
-        _isConnected = _awsIotService.isConnected;
-      });
       _subscribeToTopics();
       _awsIotService.updates?.listen((List<MqttReceivedMessage<MqttMessage>> c) {
         final MqttPublishMessage recMess = c[0].payload as MqttPublishMessage;

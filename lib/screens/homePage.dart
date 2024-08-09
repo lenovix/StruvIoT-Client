@@ -1,6 +1,5 @@
 // homePage.dart
 import 'package:flutter/material.dart';
-import 'package:mockito/annotations.dart';
 import 'package:struviot/db/DatabaseHelper.dart';
 import 'package:struviot/screens/detailPage.dart';
 import 'package:struviot/screens/qrPage/introQR.dart';
