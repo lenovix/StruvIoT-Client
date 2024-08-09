@@ -15,6 +15,7 @@ class AwsIotService {
   final String clientIdentifier = Uuid().v4();
   final String username = 'struv_ilham';
   final String password = 'matdEh-geqdo3-pekzah';
+  final String ip = '192.168.1.4';
 
   MqttServerClient? client;
   bool isConnected = false;
@@ -91,7 +92,7 @@ class AwsIotService {
   Stream<List<MqttReceivedMessage<MqttMessage>>>? get updates => client?.updates;
 
   Future<void> sendDataToRestApi(String endpoint, String deviceId, String status) async {
-    final url = Uri.parse('http://192.168.1.8:8080/$endpoint');
+    final url = Uri.parse('http://$ip:8080/$endpoint');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},

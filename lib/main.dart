@@ -1,3 +1,4 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'package:struviot/db/DatabaseHelper.dart';
 import 'package:struviot/screens/homePage.dart';

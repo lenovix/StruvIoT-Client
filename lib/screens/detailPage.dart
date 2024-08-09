@@ -39,19 +39,19 @@ class _DetailPageState extends State<DetailPage> {
         Map<String, dynamic> data = jsonDecode(pt);
         String topic = c[0].topic;
 
-        if (topic.endsWith('/reaktor')) {
+        if (topic.endsWith('/reaktor/monitoring')) {
           setState(() {
-            _reaktorStatus = data['status'] == 'on';
+            //_reaktorStatus = data['status'] == 'on';
           });
-        } else if (topic.endsWith('/penyaring')) {
+        } else if (topic.endsWith('/penyaring/monitoring')) {
           setState(() {
-            _penyaringStatus = data['status'] == 'on';
-            _receivedBerat = data['status'] == 'on' ? data['berat'].toString() : '-';
+            //_penyaringStatus = data['status'] == 'on';
+            _receivedBerat = data.containsKey('berat') ? data['berat'].toString() : '-';
           });
-        } else if (topic.endsWith('/pengering')) {
+        } else if (topic.endsWith('/pengering/monitoring')) {
           setState(() {
-            _pengeringStatus = data['status'] == 'on';
-            _receivedSuhu = data['status'] == 'on' ? data['suhu'].toString() : '-';
+            //_pengeringStatus = data['status'] == 'on';
+            _receivedSuhu = data.containsKey('suhu') ? data['suhu'].toString() : '-';
           });
         }
       });
@@ -60,9 +60,9 @@ class _DetailPageState extends State<DetailPage> {
 
   void _subscribeToTopics() {
     String baseTopic = 'struv/${widget.deviceId}';
-    _awsIotService.subscribe('$baseTopic/reaktor');
-    _awsIotService.subscribe('$baseTopic/penyaring');
-    _awsIotService.subscribe('$baseTopic/pengering');
+    _awsIotService.subscribe('$baseTopic/reaktor/monitoring');
+    _awsIotService.subscribe('$baseTopic/penyaring/monitoring');
+    _awsIotService.subscribe('$baseTopic/pengering/monitoring');
   }
 
   void _handleSwitchChange(String endpoint, bool value) {
